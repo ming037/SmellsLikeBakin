@@ -4,7 +4,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements ListFragment.OnRecipeSelectedInterface, GridFragment.OnRecipeSelectedInterface{
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListRecipeSelected(int index) {
-        Toast.makeText(this, Recipes.names [index], Toast.LENGTH_SHORT).show();
+
         ViewPagerFragment fragment = new ViewPagerFragment();
 
         Bundle bundle = new Bundle();
@@ -73,6 +72,20 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onGridRecipeSelected(int index) {
+
+        DualPaneFragment fragment = new DualPaneFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt(ViewPagerFragment.KEY_RECIPE_INDEX, index);
+        fragment.setArguments(bundle);
+
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.placeHolder, fragment,VIEWPAGER_FRAGMENT); //3번째 인자는 tag
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
 
     }
 }
