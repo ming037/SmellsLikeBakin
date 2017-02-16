@@ -34,6 +34,11 @@ public class ViewPagerFragment extends Fragment{
         bundle.putInt(KEY_RECIPE_INDEX, index);
         ingredientsFragment.setArguments(bundle);
 
+        //directionsFragment에 인덱스 넘기기
+        bundle = new Bundle();
+        bundle.putInt(KEY_RECIPE_INDEX, index);
+        directionsFragment.setArguments(bundle);
+
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
         viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
