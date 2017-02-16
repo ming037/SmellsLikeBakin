@@ -11,7 +11,14 @@ import android.widget.TextView;
  * Created by Administrator on 2017-02-16.
  */
 
-public class ListAdapter extends RecyclerView.Adapter {
+public class ListAdapter extends RecyclerView.Adapter
+{
+    private final ListFragment.OnRecipeSelectedInterface mListener;
+
+    public ListAdapter(ListFragment.OnRecipeSelectedInterface listener) {
+        mListener = listener;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
@@ -32,6 +39,7 @@ public class ListAdapter extends RecyclerView.Adapter {
     {
         private TextView mTextView;
         private ImageView mImageView;
+        private int mIndex;
 
         public ListViewHolder(View itemView) {
             super(itemView);
@@ -43,11 +51,12 @@ public class ListAdapter extends RecyclerView.Adapter {
         {
             mTextView.setText(Recipes.names[position]);
             mImageView.setImageResource(Recipes.resourceIds[position]);
+            mIndex = position;
         }
 
         @Override
         public void onClick(View v) {
-
+            mListener.onListRecipeSelected(mIndex);
         }
     }
 }
