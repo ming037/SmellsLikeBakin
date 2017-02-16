@@ -5,12 +5,10 @@
               android:layout_height="match_parent"
     >
 
-    <TextView
-        android:text="Yay Fragment!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+    <android.support.v7.widget.RecyclerView
+        android:id ="@+id/listRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        android:gravity="center_horizontal"
-        android:layout_gravity="center_horizontal"/>
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
