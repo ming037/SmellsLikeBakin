@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 public class ViewPagerFragment extends Fragment{
    public static final String KEY_RECIPE_INDEX = "recipe_index";
-
+    public static final String KEY_IS_INGREDIENTS = "KEY_IS_INGREDIENTS";
 
     @Nullable
     @Override
@@ -26,17 +26,20 @@ public class ViewPagerFragment extends Fragment{
         getActivity().setTitle(Recipes.names[index]);
         View view = inflater.inflate(R.layout.fragment_viewpager, container,false);
 
-        final IngredientsFragment ingredientsFragment = new IngredientsFragment();
-        final DirectionsFragment directionsFragment = new DirectionsFragment();
+        final CheckBoxesFragment ingredientsFragment = new CheckBoxesFragment();
+        final CheckBoxesFragment directionsFragment = new CheckBoxesFragment();
+
 
         //ingredientsFragment에 인덱스 넘기기
         Bundle bundle = new Bundle();
         bundle.putInt(KEY_RECIPE_INDEX, index);
+        bundle.putBoolean(KEY_IS_INGREDIENTS, true);
         ingredientsFragment.setArguments(bundle);
 
         //directionsFragment에 인덱스 넘기기
         bundle = new Bundle();
         bundle.putInt(KEY_RECIPE_INDEX, index);
+        bundle.putBoolean(KEY_IS_INGREDIENTS, false);
         directionsFragment.setArguments(bundle);
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
