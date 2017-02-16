@@ -3,6 +3,7 @@ package hh.com.smellslikebakin;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -40,8 +41,16 @@ public class ViewPagerFragment extends Fragment{
             public int getCount() {
                 return 2;
             }
+
+            @Override
+            public CharSequence getPageTitle(int position)  //setting page title, must use when making tab layout
+            {
+                return position == 0? "Ingredients" : "Directions";
+            }
         });
 
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);
         return view;
     }
     @Override
