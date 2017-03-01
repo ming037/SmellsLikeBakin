@@ -7,6 +7,6 @@ package hh.com.smellslikebakin;
 public class IngredientsFragment extends CheckBoxesFragment {
     @Override
     public String[] getContents(int index) {
-        return Recipes.directions[index].split("`");
+        return Recipes.ingredients[index].split("`");
     }
 }
